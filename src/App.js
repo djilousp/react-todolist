@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
+import Wrapper from "./components/Wrapper/index"
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello react</h1>
-    </div>
+      <Wrapper />
   );
 }
 
