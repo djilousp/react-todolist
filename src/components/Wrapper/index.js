@@ -1,5 +1,6 @@
 import React ,{ Component } from "react"
 import WrapperComponent from "./Wrapper"
+import uniqid from "uniqid"
 
 class Wrapper extends Component{
     constructor(){
@@ -19,10 +20,16 @@ class Wrapper extends Component{
     handleSubmitTodos = () => {
         this.setState(prevState => {
             return {
-                todos: [...this.state.todos, {todosInput: this.state.inputText, isCompleted: true}]
+                inputText:"",
+                todos: [...prevState.todos, {todosInput: prevState.inputText, isCompleted: true, id: uniqid()}],
             }
+            
         })
     } 
+    handleDeleteTodos = (key) => {
+        const todosUpdated = this.state.todos.filter(todo => todo.id !== key)
+        this.setState({todos: todosUpdated})
+    }
     render() {
         return (
             <div>
@@ -30,12 +37,12 @@ class Wrapper extends Component{
                     <h1>My Todolist </h1>
                 </header>
                 {/* display new state test */}
-                {this.state.todos.map((todo) => {
-                    return (
-                        <h1> { todo.todosInput } is  { todo.isCompleted  ? "Completed" : "Not Completed" }</h1>
-                    )
-                })}
-                <WrapperComponent handleInputText={this.handleInputText} handleSubmitTodos={ this.handleSubmitTodos }/>
+                <WrapperComponent 
+                    todos={this.state.todos}
+                    inputText={this.state.inputText} 
+                    handleInputText={this.handleInputText} 
+                    handleSubmitTodos={ this.handleSubmitTodos } 
+                    handleDeleteTodos={this.handleDeleteTodos}/>
             </div>
         )
     }

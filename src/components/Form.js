@@ -1,6 +1,6 @@
 import React from "react"
 
-const Form = ({ handleInputText, handleSubmitTodos }) => {
+const Form = ({ handleInputText, handleSubmitTodos, inputText }) => {
     const setInputState = (e) => {
         handleInputText(e)
     };
@@ -14,6 +14,7 @@ const Form = ({ handleInputText, handleSubmitTodos }) => {
             type="text" 
             className="todo-input" 
             name="inputText"
+            value={inputText} 
             onChange={setInputState}
             required={true}
         />
