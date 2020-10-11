@@ -1,9 +1,15 @@
 import React from "react";
-
-const Todolist = () => {
+import Todo from "./Todo"
+const Todolist = ({todos, handleDeleteTodos}) => {
     return (
         <div className="todo-container">
-            <ul className="todo-list"></ul>
+            <ul className="todo-list">
+                {todos.map(todo => (
+                    <Todo key={todo.id} id={todo.id} todo={todo} handleDeleteTodos={handleDeleteTodos}/>
+                ))}
+                
+            </ul>
+            
         </div>
     );
 }
