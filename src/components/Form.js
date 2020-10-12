@@ -1,8 +1,8 @@
 import React from "react"
 
-const Form = ({ handleInputText, handleSubmitTodos, inputText }) => {
+const Form = ({ handleUserInput, handleSubmitTodos, inputText , filter}) => {
     const setInputState = (e) => {
-        handleInputText(e)
+        handleUserInput(e)
     };
     const submitTodos = (e) => {
         e.preventDefault()
@@ -17,12 +17,13 @@ const Form = ({ handleInputText, handleSubmitTodos, inputText }) => {
             value={inputText} 
             onChange={setInputState}
             required={true}
+            autoComplete={"off"}
         />
         <button className="todo-button" type="submit" >
             <i className="fas fa-plus-square"></i>
         </button>
         <div className="select">
-            <select name="todos" className="filter-todo">
+            <select name="filter" className="filter-todo" onChange={handleUserInput}>
             <option value="all">All</option>
             <option value="completed">Completed</option>
             <option value="uncompleted">Uncompleted</option>
