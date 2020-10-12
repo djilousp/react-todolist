@@ -7,12 +7,14 @@ class Wrapper extends Component{
         super()
         this.state = {
             inputText:"",
-            todos: []
+            todos: [],
+            filter: ""
         }
 
     }
-    handleInputText = (event) => {
+    handleUserInput = (event) => {
         const {name, value} = event.target
+        console.log(event.target.value)
         this.setState({
             [name]: value
         })
@@ -40,9 +42,11 @@ class Wrapper extends Component{
                 <WrapperComponent 
                     todos={this.state.todos}
                     inputText={this.state.inputText} 
-                    handleInputText={this.handleInputText} 
+                    handleUserInput={this.handleUserInput} 
                     handleSubmitTodos={ this.handleSubmitTodos } 
-                    handleDeleteTodos={this.handleDeleteTodos}/>
+                    handleDeleteTodos={this.handleDeleteTodos}
+                    filter={this.state.filter}
+                />
             </div>
         )
     }
