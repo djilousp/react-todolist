@@ -23,7 +23,7 @@ class Wrapper extends Component{
         this.setState(prevState => {
             return {
                 inputText:"",
-                todos: [...prevState.todos, {todosInput: prevState.inputText, isCompleted: true, id: uniqid()}],
+                todos: [...prevState.todos, {todosInput: prevState.inputText, isCompleted: false, id: uniqid()}],
             }
             
         })
@@ -31,6 +31,15 @@ class Wrapper extends Component{
     handleDeleteTodos = (key) => {
         const todosUpdated = this.state.todos.filter(todo => todo.id !== key)
         this.setState({todos: todosUpdated})
+    }
+    handleCompleteTodos = (key) => {
+        const todosUpdated = this.state.todos.map(todo => {
+            if (todo.id === key) {
+                return {...todo, isCompleted: true}
+            }
+            return todo
+        })
+        this.setState({todos: todoUpdated})
     }
     render() {
         return (
@@ -45,6 +54,7 @@ class Wrapper extends Component{
                     handleUserInput={this.handleUserInput} 
                     handleSubmitTodos={ this.handleSubmitTodos } 
                     handleDeleteTodos={this.handleDeleteTodos}
+                    handleCompleteTodos={this.handleCompleteTodos}
                     filter={this.state.filter}
                 />
             </div>
