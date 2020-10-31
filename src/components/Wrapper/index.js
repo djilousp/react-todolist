@@ -39,7 +39,7 @@ class Wrapper extends Component{
             }
             return todo
         })
-        this.setState({todos: todoUpdated})
+        this.setState({todos: todosUpdated})
     }
     render() {
         return (
